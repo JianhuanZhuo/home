@@ -1,0 +1,57 @@
+<p>--- title: flexmark-java date : 2018/1/26 tag: scvs list_num: false categories:  - ☎ 经验累积  - 其他</p>
+<hr/>
+<h2>maven 引入</h2>
+<p><code>xml
+&lt;dependency&gt;
+    &lt;groupId&gt;com.vladsch.flexmark&lt;/groupId&gt;
+    &lt;artifactId&gt;flexmark-all&lt;/artifactId&gt;
+    &lt;version&gt;0.22.4&lt;/version&gt;
+&lt;/dependency&gt;
+</code></p>
+<p>项目 github：<a href="https://github.com/sirthias/pegdown">https://github.com/sirthias/pegdown</a> API 文档：<a href="http://sirthias.github.com/pegdown/api">http://sirthias.github.com/pegdown/api</a></p>
+<p>管理上需要</p>
+<!--more-->
+<h2>IDEA 创建分支</h2>
+<p>创建分支之前你得需要在 SVN 上知道个可以存放分支的地方，一般来说，项目上应该有两个文件夹 <code>[pro_root]\trunk</code> 和 <code>pro_root\branches</code> 两个文件夹，trunk 文件夹存放项目的主干分支，而 branches 则存放各种小分支。</p>
+<p>很不幸，虽然我现在的项目之前木有这么个设定，于是乎自己创建了个文件夹 <code>dap_branches</code> 用于存放分支。</p>
+<p>接下来是创建一个分支，在使用命令行时使用如下命令</p>
+<p><code>bash
+$ svn copy [source_pro_url]\trunk \
+           [target_pro_url]\branches\ [target_new_branch]
+           -m &quot;some message to log this change!&quot;
+</code></p>
+<p>命令 | 描述 ------- | ------- tomcat:deploy | 部署一个web war包 tomcat:reload | 重新加载web war包 tomcat:start | 启动tomcat tomcat:stop | 停止tomcat tomcat:undeploy | 停止一个war包 tomcat:run | 启动嵌入式tomcat ，并运行当前项目</p>
+<p>使用 IDEA 的话，则需要</p>
+<ol>
+  <li>右击该项目 &gt; subversion... &gt; Branch or Tag... &gt;</li>
+  <li>指定 <code>Copy From</code>，选择 <code>Working Copy</code> 拷贝当前工程，或者选择 <code>Repository Location</code> 指定具体版本号的工程</li>
+  <li>指定 <code>Copy To</code>，选择 <code>Branch or Tag</code> 指定新建的分支路径和分支名。</li>
+</ol>
+<p>序列</p>
+<ul>
+  <li>1</li>
+  <li>2</li>
+</ul>
+<ol>
+  <li>后处理步骤主要针对最终的 AST 进行修改。后处理器有两种：节点和文档。尽管 <code>PostProcessor</code> 接口可用于两种类型，但一个后处理器只能对应其中一种。
+    <ul>
+      <li>
+        <p>节点后处理：节点后处理器使用祖先排除标准来指定后处理的节点类别。对于符合条件的 AST 节点都会调用处理器的 <code>process(NodeTracker, Node)</code> 函数。</p>
+        <p>对 AST 的任何修改都必须传递给 <code>NodeTracker</code> 实例，该实例负责更新用于优化节点选择的内部结构。</p>
+        <p>具体而言，在 AST 层次结构中每添加或移动新节点将需要更新其祖先列表，以便进一步后处理节点。这些通知函数应在特定的更改层次结构更改完成后调用，以消除中间 AST 更改的不必要更新。</p>
+        <p>新增或移入孩子节点的节点都需要调用 <code>nodeAddedWithChildren(Node)</code> 方法通知，而不是每个节点都回调一次 <code>nodeAdded(Node)</code>。类似地，应该通过 <code>nodeAddedWithDescendants(Node)</code> 来传达至更深的节点。</p>
+        <p>完整的节点删除应该使用 <code>nodeRemoved()</code> 函数通知全部子孙节点后再执行删除。</p>
+        <p>所有节点移除函数的执行会将节点连同其所有后代全部移除，因为没有父节点的任何野节点都从 AST 中移除。</p>
+      </li>
+      <li>
+        <p>文档后处理：文档后处理器由调用 <code>processDocument(Document)</code> 成员函数执行，并且返回的文档将可以用作进一步处理。</p>
+        <p>文档处理器负责通过递归遍历 AST 来找到目标节点。出于这个原因，文档后处理器应该只用在单个节点上无法处理的情况。</p>
+        <p>尽管扩展遍历 AST 比创建，维护和访问解析器中的优化结构要快，但是在大文档上却是一个非常慢的过程。</p>
+        <p>对于基于AST中的祖先类型排除节点的扩展，这种性能增益尤其如此。对于节点后置处理器，这个层次结构是在AST的单次遍历期间确定的，以构建所有的节点跟踪结构。如果扩展通过回顾节点的getParent（）函数来确定继承，则在大型文档上变得非常低效。</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016070403.png" alt="baidu.com" /></p>
+<p><img src="./xxxx/hxx.jpg" alt="x" /> <img src="/xxxx/hxx.jpg" alt="m" /></p>
+<p>x k%%% sds(x=1) hahah %%%</p>

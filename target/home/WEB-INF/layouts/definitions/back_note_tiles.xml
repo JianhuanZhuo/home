@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache
+Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="back_note" extends="baseLayout" template="/WEB-INF/views/back_note.jsp">
+        <put-attribute name="back_slide" value="/WEB-INF/layouts/template/back_note_menu_tpl.jsp"/>
+    </definition>
+    <definition name="back_note_folder" extends="baseLayout" template="/WEB-INF/views/back_note_folder.jsp">
+        <put-attribute name="back_slide" value="/WEB-INF/layouts/template/back_note_menu_tpl.jsp"/>
+    </definition>
+</tiles-definitions>

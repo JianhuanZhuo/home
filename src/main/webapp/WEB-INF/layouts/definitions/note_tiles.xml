@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache
+Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="note_list" extends="baseLayout" template="/WEB-INF/views/note_list.jsp">
+        <put-attribute name="note_tags" value="/WEB-INF/layouts/template/note_tags_tpl.jsp"/>
+        <put-attribute name="note_archive" value="/WEB-INF/layouts/template/note_archive_tpl.jsp"/>
+        <put-attribute name="note_tag_cloud" value="/WEB-INF/layouts/template/note_tag_cloud_tpl.jsp"/>
+        <!--<put-attribute name="slide" value="/WEB-INF/layouts/template/backend_slide.jsp"/>-->
+        <!--<put-attribute name="navigation" value="/WEB-INF/layouts/template/navigation.jsp"/>-->
+    </definition>
+    <definition name="note_article" extends="baseLayout" template="/WEB-INF/views/note_article.jsp">
+        <put-attribute name="note_tags" value="/WEB-INF/layouts/template/note_tags_tpl.jsp"/>
+        <put-attribute name="note_archive" value="/WEB-INF/layouts/template/note_archive_tpl.jsp"/>
+        <put-attribute name="note_tag_cloud" value="/WEB-INF/layouts/template/note_tag_cloud_tpl.jsp"/>
+    </definition>
+    <definition name="note_tag" extends="baseLayout" template="/WEB-INF/views/note_tag.jsp">
+        <put-attribute name="note_tags" value="/WEB-INF/layouts/template/note_tags_tpl.jsp"/>
+        <put-attribute name="note_archive" value="/WEB-INF/layouts/template/note_archive_tpl.jsp"/>
+        <put-attribute name="note_tag_cloud" value="/WEB-INF/layouts/template/note_tag_cloud_tpl.jsp"/>
+    </definition>
+    <definition name="note_archive" extends="baseLayout" template="/WEB-INF/views/note_archive.jsp">
+        <put-attribute name="note_tags" value="/WEB-INF/layouts/template/note_tags_tpl.jsp"/>
+        <put-attribute name="note_archive" value="/WEB-INF/layouts/template/note_archive_tpl.jsp"/>
+        <put-attribute name="note_tag_cloud" value="/WEB-INF/layouts/template/note_tag_cloud_tpl.jsp"/>
+    </definition>
+</tiles-definitions>

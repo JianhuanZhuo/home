@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache
+Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="baseLayout">
+        <put-attribute name="head" value="/WEB-INF/layouts/template/head_tpl.jsp"/>
+        <put-attribute name="nav" value="/WEB-INF/layouts/template/nav_tpl.jsp"/>
+        <put-attribute name="foot" value="/WEB-INF/layouts/template/footer_tpl.jsp"/>
+
+        <!--backend-->
+        <put-attribute name="back_head" value="/WEB-INF/layouts/template/back_head_tpl.jsp"/>
+        <put-attribute name="back_nav" value="/WEB-INF/layouts/template/back_nav_tpl.jsp"/>
+        <put-attribute name="back_slide" value="/WEB-INF/layouts/template/back_slide_tpl.jsp"/>
+    </definition>
+    <definition name="welcome" extends="baseLayout" template="/WEB-INF/views/welcome.jsp">
+        <put-attribute name="test" value="2"/>
+    </definition>
+    <definition name="miss" extends="baseLayout" template="/WEB-INF/views/miss.jsp">
+    </definition>
+    <definition name="error" extends="baseLayout" template="/WEB-INF/views/error.jsp">
+    </definition>
+</tiles-definitions>

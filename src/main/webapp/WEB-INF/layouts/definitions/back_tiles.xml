@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache
+Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="back_main" extends="baseLayout" template="/WEB-INF/views/back_main.jsp">
+    </definition>
+    <definition name="back_setting" extends="baseLayout" template="/WEB-INF/views/back_setting.jsp">
+    </definition>
+</tiles-definitions>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.keepfight.Mapper.NoteMapper">
+    <insert id="insert" parameterType="NoteDao">
+        REPLACE INTO note(
+        title,
+        filePath,
+        tags,
+        categoryPath,
+        abs,
+        pubTime,
+        update_time,
+        lastModified,
+        mathjax,
+        trans,
+        forward,
+        list_num
+        )
+        VALUES (
+        #{title},
+        #{filePath},
+        #{tags},
+        #{categoryPath},
+        #{abs},
+        #{pubTime},
+        #{update_time},
+        #{lastModified},
+        #{mathjax},
+        #{trans},
+        #{forward},
+        #{list_num}
+        )
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT last_insert_id();
+        </selectKey>
+    </insert>
+
+
+    <!--void deleteByID(int id) throws Exception;-->
+    <delete id="deleteByID" parameterType="int">
+        DELETE
+        FROM note
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectAll" resultType="NoteDao">
+        SELECT *
+        FROM note
+        ORDER BY pubTime DESC
+    </select>
+
+    <!--List<NoteDao> selectAllByPage(int page) throws Exception;-->
+    <select id="selectAllByPage" resultType="NoteDao">
+        SELECT *
+        FROM note
+        ORDER BY pubTime DESC
+        LIMIT #{page}, #{eachPage}
+    </select>
+
+    <!--List<NoteDao> selectByTag(String tag) throws Exception;-->
+    <select id="selectByTag" resultType="NoteDao" parameterType="String">
+        SELECT *
+        FROM note
+        WHERE tags LIKE #{tag}
+        ORDER BY pubTime DESC
+    </select>
+
+    <select id="selectByID" resultType="NoteDao" parameterType="int">
+        SELECT *
+        FROM note
+        WHERE id = #{id}
+    </select>
+
+    <!--List<NoteDao> selectByYear(int year) throws Exception;-->
+    <select id="selectByYear" resultType="NoteDao" parameterType="int">
+        SELECT *
+        FROM note
+        WHERE YEAR(pubTime) = #{year}
+        ORDER BY pubTime DESC
+    </select>
+
+    <!--NoteDao selectByPath(String path) throws Exception;-->
+    <select id="selectByPath" resultType="NoteDao" parameterType="String">
+        SELECT *
+        FROM note
+        WHERE filePath = #{filePath}
+    </select>
+
+    <!--int countNum() throws Exception;-->
+    <select id="countNum" resultType="int">
+        SELECT count(1)
+        FROM note
+    </select>
+</mapper>

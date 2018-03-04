@@ -1,0 +1,30 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<mirrors>
+		<!--给定仓库的下载镜像。  -->
+		<mirror>
+			<!--该镜像的唯一标识符。id用来区分不同的mirror元素。  -->
+			<id>nexus-aliyun</id>
+			<!--镜像名称  -->
+			<name>Nexus aliyun</name>
+			<!--该镜像的URL。构建系统会优先考虑使用该URL，而非使用默认的服务器URL。  -->
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<!--被镜像的服务器的id。例如，如果我们要设置了一个Maven中央仓库（http://repo1.maven.org/maven2）的镜像，-->
+			<!--就需要将该元素设置成central。这必须和中央仓库的id central完全一致。 -->
+			<mirrorOf>*</mirrorOf>
+		</mirror>
+	</mirrors>
+	<profiles>  
+<profile>  
+    <id>downloadSources</id>  
+    <properties>  
+        <downloadSources>true</downloadSources>  
+        <downloadJavadocs>true</downloadJavadocs>             
+    </properties>  
+</profile>  
+</profiles>  
+	<activeProfiles>  
+		<activeProfile>downloadSources</activeProfile>  
+	</activeProfiles>
+</settings>
